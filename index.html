@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Snake Game -> Jogo da Cobra">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&family=Potta+One&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Honk&family=Potta+One&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Vast+Shadow&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="Home">
+        <h1>BSI-NAKE</h1>
+        <div class="Wallpaper">
+            <img class="FotoInicial" src="/images/CapaSnake.png" alt="Imagem principal do Jogo">
+        </div>
+        <div id="apresentacao">
+            <h2>Pressione a Barra de Espaço para Iniciar...</h2>
+        </div>
+    </div>
+
+
+    <div class="tela_de_jogo"></div>
+
+    <div class="dados">
+        <span id="placar">Score: 0</span>
+        <span id="recorde">High Score: 0</span>
+    </div>
+
+    <div class="controles hidden">
+        <div class="linha">
+            <img id="setaCima" src="/images/SetaCima.svg" alt="Cima">
+        </div>
+        <div class="linha">
+            <img id="setaEsquerda" src="/images/SetaEsquerda.svg" alt="Esquerda">
+            <img id="setaBaixo" src="/images/SetaBaixo.svg" alt="Baixo">
+            <img id="setaDireita" src="/images/SetaDireita.svg" alt="Direita">
+        </div>
+    </div>
+    
+
+    <div class="tutorial" style="display: none;">
+        <section>
+            <h1>Tutorial</h1>
+            <h2>Se quiser pular o Tutorial e quiser ir jogar direto,<br> pressione Shift ⬆!</h2>
+            <br>
+            <h2>🎯 Objetivo do Jogo</h2>
+            <ul>
+                <li>Controle a cobra para coletar maçãs e marcar o maior número de pontos possível. </li>
+                <li>A cada maçã coletada, a cobra cresce, contudo cuidado com os obstáculos... </li>
+                <li>O jogo termina se a cobra bater nas bordas, nas pedras ou em si mesma.</li>
+                <br>
+            </ul>
+            
+            <h2>🕹 Controles</h2> 
+            <h3>Cliques nas Setas Direcionais da tela para mover a cobra:</h3>
+            <ul>
+                <li>⬆️ Seta para cima → Move a cobra para cima</li>
+                <li>⬇️ Seta para baixo → Move a cobra para baixo</li>
+                <li>⬅️ Seta para a esquerda → Move a cobra para a esquerda</li>
+                <li>➡️ Seta para a direita → Move a cobra para a direita</li>
+                <br>
+            </ul>
+            <h2>📜 Regras do Jogo</h2>
+            <ul>
+                <li>✅ Coma as maçãs para ganhar pontos.<br></li>
+                <li>✅ Cada maçã aumenta o tamanho da cobra.<br></li>
+                <li>❗ Fique atento as pedras que são os obstáculos do jogo!<br></li>
+                <li>❌ Evite bater nas bordas da tela.<br></li>
+                <li>❌ Evite bater nos Obstaculos do jogo!</li>
+                <li>❌ Não bata no próprio corpo, ou o jogo acaba.</li>
+                <br>
+            </ul>
+        </section>
+    </div>
+
+    <div class="instrucoes hidden">
+        <section>
+            <h1>
+                <h1>INFORMAÇÕES:</h1>
+                <br>✔ Clique em alguma seta para iniciar o jogo. 
+                <br><br>✔ A cobra esta representada pelas  cores Cinza e Laranja. 
+                <br><br>✔ Os obstaculos estão na cor azul e são criados de forma aleatoria <br> a cada reinicio de jogo. 
+                <br><br>Reinicie a Partida com Shift ⬆
+            </h1>
+        </section>
+    </div>
+    
+        <!-- Formulário para inserir o nome do jogador -->
+    <div id="nomeJogador" class="hidden">
+        <h2>Digite seu nome para começar!</h2>
+        <input type="text" id="inputNome" placeholder="Nome do Jogador">
+        <button id="iniciarJogoBtn">Iniciar Jogo</button>
+    </div>
+
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+/* Estilo da tela inicial */
+.Home {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/images/BackgroundFloresta.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 15px;
+}
+
+.Home h1 {
+    color: red;
+    font-family: "Honk", sans-serif;
+    font-size: 6rem;
+}
+
+.Wallpaper img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 0px;
+}
+
+#apresentacao {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: -20px;
+    font-family: "Silkscreen", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: gray;
+}
+
+#apresentacao:hover {
+    color: yellow;
+}
+
+#apresentacao:active {
+    color: orangered;
+}
+
+
+.tutorial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url(/images/imagemTutorial.png);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Silkscreen", serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-style: normal;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    background-blend-mode: overlay;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+  
+  .silkscreen-bold {
+    font-family: "Silkscreen", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+
+
+/* Estilo do jogo */
+.tela_de_jogo {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    grid-template-rows: repeat(30, 1fr);
+    width: 70%;
+    height: 80vh;
+    background-image: url(/images/CenarioJogo.jpeg);
+    border: 5px solid white;
+    margin: 20px auto;
+    position: relative;
+    right: 5%;
+}
+
+.instrucoes {
+    position: absolute;
+    right: 10px; /* Posiciona o quadro à direita */
+    top: 5%; /* Posiciona o quadro a 30% do topo */
+    display: flex;
+    flex-direction: column; /* Organiza o texto em coluna */
+    align-items: flex-end; /* Alinha o texto à direita */
+    justify-content: center;
+    max-width: 19%;
+    font-size: 120%;
+    background: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+    padding: 5px;
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    transform: scaleY(2); /* Estica o texto verticalmente */
+    transform-origin: top; /* Define a origem da transformação no topo */
+    color: gray;
+    font-family: "Bangers", serif;
+    font-weight: 200;
+    font-style: normal;
+    gap: 5px;
+      
+}
+
+.controles {
+    position: absolute;
+    left: 45%; /* Centraliza horizontalmente */
+  
+    transform: translate(-50%, -50%); /* Ajusta o centro do elemento */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+    display: none;
+}
+
+.linha {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 2px 0;
+}
+
+.controles img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.controles img:active {
+    transform: scale(0.9);
+}
+
+
+/* Elementos da cobra e da comida */
+.head, .food {
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo da sombra da cobra */
+.sombra-cobra {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Cor da sombra */
+    filter: blur(10px); /* Efeito de desfoque */
+    z-index: -1; /* Coloca a sombra atrás da cobra */
+    border-radius: 50%; /* Deixa a sombra mais arredondada */
+
+
+}
+
+.food {
+    background-color: red;
+}
+
+.head {
+    background-color: orange;
+}
+
+.obstaculo {
+    width: 100%;
+    height: 100%;
+    background-color: midnightblue;
+    border: 2px solid gray;
+}
+
+
+/* Estilo do placar */
+.dados {
+    font-size: 2rem;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 30%;
+    font-family: "Vast Shadow", serif;
+    font-weight: 1000;
+    font-style: normal;
+    
+}
+
+#placar, #recorde {
+    display: block;
+}
+
+/* Responsividade */
+@media screen and (max-width: 800px) {
+    .tela_de_jogo {
+        width: 90vmin;
+        height: 90vmin;
+    }
+
+    .Home h1 {
+        font-size: 3rem;
+    }
+
+    .Wallpaper img {
+        max-width: 80%;
+    }
+}
