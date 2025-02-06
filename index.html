@@ -79,6 +79,13 @@
         </section>
     </div>
 
+        <!-- Menu de seleção de modo -->
+    <div id="menuModo" class="hidden">
+        <h2>Selecione o Modo de Jogo</h2>
+        <button id="modoClassicoBtn">Modo Clássico</button>
+        <button id="modoVsCpuBtn">Modo VS CPU</button>
+    </div>
+
     <div class="instrucoes hidden">
         <section>
             <h1>
@@ -91,11 +98,19 @@
         </section>
     </div>
     
-        <!-- Formulário para inserir o nome do jogador -->
-    <div id="nomeJogador" class="hidden">
-        <h2>Digite seu nome para começar!</h2>
-        <input type="text" id="inputNome" placeholder="Nome do Jogador">
-        <button id="iniciarJogoBtn">Iniciar Jogo</button>
+        <!-- Formulário para inserir o nome do jogador após o game over -->
+    <div id="formularioGameOver" class="hidden">
+        <h2>Game Over!</h2>
+        <p>Digite seu nome para salvar sua pontuação:</p>
+        <input type="text" id="inputNomeJogador" placeholder="Nome do Jogador">
+        <button id="salvarNomeBtn">Salvar e Reiniciar</button>
+    </div>
+
+    <!-- Ranking dos top 5 scores -->
+    <div id="ranking" class="hidden">
+        <h2>Top 5 Scores</h2>
+        <ul id="listaRanking"></ul>
+        <button id="fecharRankingBtn">Fechar</button>
     </div>
 
 

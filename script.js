@@ -8,8 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const setaBaixo = document.querySelector("#setaBaixo");
     const setaEsquerda = document.querySelector("#setaEsquerda");
     const setaDireita = document.querySelector("#setaDireita");
-    const controles = document.querySelector(".controles"); // Seleciona a div dos controles
+    const controles = document.querySelector(".controles");
     const instrucoes = document.querySelector(".instrucoes");
+    const formularioGameOver = document.querySelector("#formularioGameOver");
+    const inputNomeJogador = document.querySelector("#inputNomeJogador");
+    const salvarNomeBtn = document.querySelector("#salvarNomeBtn");
+    const ranking = document.querySelector("#ranking");
+    const listaRanking = document.querySelector("#listaRanking");
+    const fecharRankingBtn = document.querySelector("#fecharRankingBtn");
 
     let gameOver = false;
     let score = 0;
@@ -24,23 +30,46 @@ document.addEventListener("DOMContentLoaded", () => {
     highScoreElement.innerText = `High Score: ${highScore}`;
 
     document.addEventListener("keydown", (event) => {
-        if (event.key === " ") { // Barra de espaço inicia o tutorial primeiro
+        if (event.key === " ") {
             home.style.display = "none";
             tutorial.style.display = "block";
-            controles.classList.add("hidden"); // Esconde os controles no tutorial
+            controles.classList.add("hidden");
             instrucoes.classList.add("hidden");
         }
-        if (event.key === "Shift") { // Shift pula o tutorial e inicia o jogo
+        if (event.key === "Shift") {
             tutorial.style.display = "none";
             iniciarJogo();
         }
     });
 
-    // Configurações dos botões de controle
     setaCima.addEventListener("click", () => moverCobra(0, -1));
     setaBaixo.addEventListener("click", () => moverCobra(0, 1));
     setaEsquerda.addEventListener("click", () => moverCobra(-1, 0));
     setaDireita.addEventListener("click", () => moverCobra(1, 0));
+
+    // Converte o nome do jogador para maiúsculas automaticamente
+    inputNomeJogador.addEventListener("input", () => {
+        inputNomeJogador.value = inputNomeJogador.value.toUpperCase();
+    });
+
+    // Salva o nome do jogador e exibe o ranking
+    salvarNomeBtn.addEventListener("click", () => {
+        const nomeJogador = inputNomeJogador.value.trim();
+        if (nomeJogador) {
+            salvarScore(nomeJogador, score);
+            exibirRanking();
+            formularioGameOver.classList.add("hidden");
+            ranking.classList.remove("hidden");
+        } else {
+            alert("Por favor, insira seu nome!");
+        }
+    });
+
+    // Fecha o ranking e reinicia o jogo
+    fecharRankingBtn.addEventListener("click", () => {
+        ranking.classList.add("hidden");
+        iniciarJogo();
+    });
 
     function moverCobra(x, y) {
         speedX = x;
@@ -49,8 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function iniciarJogo() {
         game.style.display = "grid";
-        controles.classList.remove("hidden"); // Mostra os controles na tela de jogo
+        controles.classList.remove("hidden");
         instrucoes.classList.remove("hidden");
+        formularioGameOver.classList.add("hidden");
+        ranking.classList.add("hidden");
         gameOver = false;
         score = 0;
         snakeX = 15;
@@ -92,21 +123,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (snakeX < 0 || snakeX >= 30 || snakeY < 0 || snakeY >= 30) {
             gameOver = true;
-            alert("Game Over! Você bateu na parede! Pressione Shift para reiniciar.");
+            exibirFormularioGameOver();
             return;
         }
 
         for (let i = 1; i < snakeBody.length; i++) {
             if (snakeBody[i].x === snakeX && snakeBody[i].y === snakeY) {
                 gameOver = true;
-                alert("Game Over! Você bateu em si mesmo! Pressione Shift para reiniciar.");
+                exibirFormularioGameOver();
                 return;
             }
         }
 
         if (obstacles.some(obs => obs.x === snakeX && obs.y === snakeY)) {
             gameOver = true;
-            alert("Game Over! Você bateu em um obstáculo! Pressione Shift para reiniciar.");
+            exibirFormularioGameOver();
             return;
         }
 
@@ -126,6 +157,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         renderGame();
+    }
+
+    function exibirFormularioGameOver() {
+        formularioGameOver.classList.remove("hidden");
+        game.style.display = "none";
+        controles.classList.add("hidden");
+        instrucoes.classList.add("hidden");
+    }
+
+    function salvarScore(nome, score) {
+        const scores = JSON.parse(localStorage.getItem("scores")) || [];
+        scores.push({ nome, score });
+        scores.sort((a, b) => b.score - a.score); // Ordena do maior para o menor
+        localStorage.setItem("scores", JSON.stringify(scores.slice(0, 5))); // Armazena apenas os top 5
+    }
+
+    function exibirRanking() {
+        const scores = JSON.parse(localStorage.getItem("scores")) || [];
+        listaRanking.innerHTML = ""; // Limpa a lista antes de atualizar
+
+        scores.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${index + 1}. ${item.nome} - ${item.score}`;
+            listaRanking.appendChild(li);
+        });
     }
 
     function renderGame() {
