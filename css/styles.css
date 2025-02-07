@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     overflow: hidden;
     padding: 0;
@@ -63,7 +62,6 @@ body {
     color: orangered;
 }
 
-
 .tutorial {
     position: fixed;
     top: 0;
@@ -88,14 +86,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
-  
-  .silkscreen-bold {
+
+.silkscreen-bold {
     font-family: "Silkscreen", serif;
     font-weight: 700;
     font-style: normal;
-  }
-  
-
+}
 
 /* Estilo do jogo */
 .tela_de_jogo {
@@ -109,37 +105,93 @@ body {
     margin: 20px auto;
     position: relative;
     right: 5%;
+    position: static; /* Remova o right: 5% que estava deslocando */
+    overflow: visible; /* Garante que elementos não sejam cortados */
+}
+
+/* --- Correção principal aqui --- */
+.cobra, .cobra-cpu, .food, .obstaculo {
+    width: 100%;
+    height: 100%;
+}
+
+.cobra, .cobra-cpu {
+    z-index: 2;
+    box-shadow: 0 0 5px white; /* Destaque visual */
+}
+
+/* Estilo da cobra do jogador */
+.cobra {
+    background-color: darkslategray;
+    border: 1px solid orangered;
+}
+
+/* Estilo da cobra da CPU */
+.cobra-cpu {
+    background-color: darkgreen;
+    border: 1px solid limegreen;
+    z-index: 2; /* Garante que as partes do corpo fiquem acima de obstáculos */
+    position: relative; /* Permite que o z-index funcione */
+}
+
+/* Estilo da maçã */
+.food {
+    background-color: red;
+}
+
+/* Estilo dos obstáculos */
+.obstaculo {
+    background-color: midnightblue;
+    border: 2px solid gray;
 }
 
 .instrucoes {
     position: absolute;
-    right: 10px; /* Posiciona o quadro à direita */
-    top: 5%; /* Posiciona o quadro a 30% do topo */
+    right: 10px;
+    top: 5%;
     display: flex;
-    flex-direction: column; /* Organiza o texto em coluna */
-    align-items: flex-end; /* Alinha o texto à direita */
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: center;
-    max-width: 19%;
+    max-width: 14%;
     font-size: 120%;
-    background: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+    background: rgba(0, 0, 0, 0.8);
     padding: 5px;
-    border-radius: 5px; /* Bordas arredondadas */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
-    transform: scaleY(2); /* Estica o texto verticalmente */
-    transform-origin: top; /* Define a origem da transformação no topo */
-    color: gray;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: scaleY(1.8);
+    transform-origin: top;
+    color: white;
     font-family: "Bangers", serif;
     font-weight: 200;
     font-style: normal;
     gap: 5px;
-      
+}
+
+#textoInstrucao {
+    font-size: 0.9rem;
+}
+
+.cpu-label {
+    color: limegreen;
+}
+
+.player-label {
+    color: gray;
+}
+
+.maca-label {
+    color: red;
+}
+
+.obstaculos-label {
+    color: blue;
 }
 
 .controles {
     position: absolute;
-    left: 45%; /* Centraliza horizontalmente */
-  
-    transform: translate(-50%, -50%); /* Ajusta o centro do elemento */
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,47 +224,6 @@ body {
     transform: scale(0.9);
 }
 
-
-/* Elementos da cobra e da comida */
-.head, .food {
-    width: 100%;
-    height: 100%;
-}
-
-/* Estilo da sombra da cobra */
-.sombra-cobra {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3); /* Cor da sombra */
-    filter: blur(10px); /* Efeito de desfoque */
-    z-index: -1; /* Coloca a sombra atrás da cobra */
-    border-radius: 50%; /* Deixa a sombra mais arredondada */
-
-
-}
-
-.food {
-    background-color: red;
-}
-
-.head {
-    background-color: orange;
-}
-
-.cobra-cpu {
-    background-color: darkgreen;
-    border: 1px solid limegreen;
-}
-
-.obstaculo {
-    width: 100%;
-    height: 100%;
-    background-color: midnightblue;
-    border: 2px solid gray;
-}
-
-
 /* Estilo do placar */
 .dados {
     font-size: 2rem;
@@ -220,11 +231,10 @@ body {
     align-items: center;
     justify-content: center;
     display: flex;
-    gap: 30%;
+    gap: 25%;
     font-family: "Vast Shadow", serif;
     font-weight: 1000;
     font-style: normal;
-    
 }
 
 #placar, #recorde {
@@ -307,7 +317,7 @@ body {
     background-color: darkorange;
 }
 
-/* Responsividade */
+/* Responsividade para telas menores */
 @media screen and (max-width: 800px) {
     .tela_de_jogo {
         width: 90vmin;
@@ -320,5 +330,31 @@ body {
 
     .Wallpaper img {
         max-width: 80%;
+    }
+
+    .controles {
+        left: 50%; /* Centraliza os controles */
+        bottom: 10px; /* Posiciona os controles na parte inferior */
+        transform: translateX(-50%);
+    }
+
+    .instrucoes {
+        max-width: 90%; /* Ajusta o tamanho do quadro de instruções */
+        font-size: 100%; /* Reduz o tamanho da fonte */
+        top: 10%; /* Reposiciona o quadro */
+    }
+
+    .dados {
+        flex-direction: column; /* Coloca o placar e o recorde em coluna */
+        gap: 10px; /* Espaçamento entre os elementos */
+    }
+
+    #formularioGameOver, #ranking {
+        width: 90%; /* Ajusta o tamanho dos formulários */
+        padding: 10px;
+    }
+
+    #formularioGameOver input, #formularioGameOver button {
+        width: 100%; /* Ajusta o tamanho dos inputs e botões */
     }
 }
