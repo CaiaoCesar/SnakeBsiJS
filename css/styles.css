@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +14,6 @@ body {
     color: white;
 }
 
-/* Estilo da tela inicial */
 .Home {
     width: 100vw;
     height: 100vh;
@@ -93,7 +91,6 @@ body {
     font-style: normal;
 }
 
-/* Estilo do jogo */
 .tela_de_jogo {
     display: grid;
     grid-template-columns: repeat(30, 1fr);
@@ -105,11 +102,10 @@ body {
     margin: 20px auto;
     position: relative;
     right: 5%;
-    position: static; /* Remova o right: 5% que estava deslocando */
-    overflow: visible; /* Garante que elementos não sejam cortados */
+    position: static;
+    overflow: visible;
 }
 
-/* --- Correção principal aqui --- */
 .cobra, .cobra-cpu, .food, .obstaculo {
     width: 100%;
     height: 100%;
@@ -117,29 +113,25 @@ body {
 
 .cobra, .cobra-cpu {
     z-index: 2;
-    box-shadow: 0 0 5px white; /* Destaque visual */
+    box-shadow: 0 0 5px white; 
 }
 
-/* Estilo da cobra do jogador */
 .cobra {
     background-color: darkslategray;
     border: 1px solid orangered;
 }
 
-/* Estilo da cobra da CPU */
 .cobra-cpu {
     background-color: darkgreen;
     border: 1px solid limegreen;
-    z-index: 2; /* Garante que as partes do corpo fiquem acima de obstáculos */
-    position: relative; /* Permite que o z-index funcione */
+    z-index: 2; 
+    position: relative; 
 }
 
-/* Estilo da maçã */
 .food {
     background-color: red;
 }
 
-/* Estilo dos obstáculos */
 .obstaculo {
     background-color: midnightblue;
     border: 2px solid gray;
@@ -224,7 +216,6 @@ body {
     transform: scale(0.9);
 }
 
-/* Estilo do placar */
 .dados {
     font-size: 2rem;
     margin-top: 10px;
@@ -317,7 +308,6 @@ body {
     background-color: darkorange;
 }
 
-/* Responsividade para telas menores */
 @media screen and (max-width: 800px) {
     .tela_de_jogo {
         width: 90vmin;
@@ -333,26 +323,26 @@ body {
     }
 
     .controles {
-        left: 50%; /* Centraliza os controles */
-        bottom: 10px; /* Posiciona os controles na parte inferior */
+        left: 50%;
+        bottom: 10px;
         transform: translateX(-50%);
     }
 
     .instrucoes {
-        display: none; /* Esconde as instruções */
+        display: none;
     }
 
     .dados {
-        flex-direction: column; /* Coloca o placar e o recorde em coluna */
-        gap: 10px; /* Espaçamento entre os elementos */
+        flex-direction: column; 
+        gap: 10px; 
     }
 
     #formularioGameOver, #ranking {
-        width: 90%; /* Ajusta o tamanho dos formulários */
+        width: 90%; 
         padding: 10px;
     }
 
     #formularioGameOver input, #formularioGameOver button {
-        width: 100%; /* Ajusta o tamanho dos inputs e botões */
+        width: 100%;
     }
 }
