@@ -339,9 +339,7 @@ body {
     }
 
     .instrucoes {
-        max-width: 90%; /* Ajusta o tamanho do quadro de instruções */
-        font-size: 100%; /* Reduz o tamanho da fonte */
-        top: 10%; /* Reposiciona o quadro */
+        display: none; /* Esconde as instruções */
     }
 
     .dados {
